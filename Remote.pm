@@ -7,11 +7,11 @@ use vars qw($VERSION @EXPORT @ISA);
 @ISA = qw(Exporter);
 @EXPORT = qw(ssi);
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 sub ssi {
 	my $args = {
-		-file=>'',
+		-get=>'',
 		-host=> 'http://www.forum.uz',
 		@_
 	};
@@ -21,7 +21,7 @@ sub ssi {
 	if ( $@ ) {
 		return "[error occured while processing ssi: $@]";
 	}
-	return LWP::Simple::get($args->{'-host'} . '/' . $args->{'-file'}) || "[ssi: empty content ]";
+	return LWP::Simple::get($args->{'-host'} . '/' . $args->{'-get'}) || "[ssi: empty content ]";
 }
 
 
@@ -33,7 +33,7 @@ __END__
 
 =head1 NAME
 
-CGI::SSI::Remote - Perl extension for blah blah blah
+CGI::SSI::Remote - Perl extension fetching remote SSI scripts
 
 =head1 SYNOPSIS
 
